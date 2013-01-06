@@ -46,6 +46,7 @@ if !&list && &listchars ==# 'eol:$'
 endif
 
 set autoread
+set autowrite
 set fileformats=unix,dos,mac
 
 set viminfo+=!
