@@ -32,6 +32,7 @@ set laststatus=2
 set ruler
 set showcmd
 set wildmenu
+match ExtraWhitespace /\s\+$/
 
 set scrolloff=1
 set sidescrolloff=5
