@@ -27,7 +27,6 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohls<CR><C-L>
 endif
 
-set cmdheight=2
 set laststatus=2
 set ruler
 set showcmd
