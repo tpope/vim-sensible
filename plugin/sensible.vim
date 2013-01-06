@@ -23,6 +23,9 @@ set ttimeoutlen=50
 
 set incsearch
 set smartcase
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohls<CR><C-L>
+endif
 
 set laststatus=2
 set ruler
