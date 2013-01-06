@@ -12,6 +12,7 @@ if !exists('g:syntax_on')
 endif
 
 set backspace=indent,eol,start
+set complete-=i
 set showmatch
 
 set autoindent
