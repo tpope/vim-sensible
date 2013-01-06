@@ -31,6 +31,7 @@ mostly `:set` calls.)  Here's a taste:
 * `'incsearch'`: Start searching before pressing enter.
 * `'listchars'`: Show trailing whitespace.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
+* `nmap Y y$`: Make `Y` behaves like `C` and `D`.
 
 [source]: https://github.com/tpope/vim-sensible/master/plugin/sensible.vim
 

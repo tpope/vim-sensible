@@ -51,4 +51,6 @@ if exists('+undofile')
   set undofile
 endif
 
+nnoremap Y y$
+
 " vim:set ft=vim et sw=2:
