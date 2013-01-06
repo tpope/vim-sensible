@@ -42,11 +42,11 @@ mostly `:set` calls.)  Here's a taste:
 
 ## Contributing
 
-I want this to be a plugin nobody objects to installing.  [Let me know][GitHub
-issues] if you have any objections to *anything*.  There are a handful of
-settings I figured *might* be controversial, but I included anyways, just to
-settle the question once and for all.  It won't take much persuasion for me to
-remove them.  Everything else is negotiable.
+I want this to be a plugin nobody objects to installing.  [Let me
+know][GitHub issues] if you have any objections to *anything*.  There are a
+handful of settings I figured *might* be controversial, but I included
+anyways, just to settle the question once and for all.  It won't take much
+persuasion for me to remove them.  Everything else is negotiable.
 
 Feel free to ask a question if you're not sure why I've set something, as I
 haven't put much effort into documenting that.
