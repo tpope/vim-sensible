@@ -32,6 +32,8 @@ mostly `:set` calls.)  Here's a taste:
 * `'listchars'`: Show trailing whitespace.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
 * `nmap Y y$`: Make `Y` behaves like `C` and `D`.
+* `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
+  with Vim.
 
 [source]: https://github.com/tpope/vim-sensible/master/plugin/sensible.vim
 

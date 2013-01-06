@@ -51,6 +51,10 @@ if exists('+undofile')
   set undofile
 endif
 
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
 nnoremap Y y$
 
 " vim:set ft=vim et sw=2:
