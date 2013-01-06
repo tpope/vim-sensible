@@ -38,7 +38,7 @@ mostly `:set` calls.)  Here's a taste:
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
 
-[source]: https://github.com/tpope/vim-sensible/master/plugin/sensible.vim
+[source]: https://github.com/tpope/vim-sensible/tree/master/plugin/sensible.vim
 
 ## Contributing
 
