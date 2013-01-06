@@ -55,6 +55,10 @@ if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
 
+if !exists('g:netrw_list_hide')
+  let g:netrw_list_hide = '^\.,\~$,^tags$'
+endif
+
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
