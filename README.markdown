@@ -42,6 +42,14 @@ mostly `:set` calls.)  Here's a taste:
 
 ## FAQ
 
+> How can I see what this plugin actually does?
+
+The [source][] is authoritative.  Use `:help 'option'` to see the
+documentation for an option.  If you install [scriptease.vim][], you can press
+`K` on an option (or command, or function) to jump to its documentation.
+
+[scriptease.vim]: https://github.com/tpope/vim-scriptease
+
 > How can I override a setting?
 
 Normally, sensible.vim loads after your vimrc, making it a bit tricky to
