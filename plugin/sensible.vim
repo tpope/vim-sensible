@@ -3,11 +3,14 @@
 
 if exists('g:loaded_sensible') || &compatible
   finish
+else
+  let g:loaded_sensible = 1
 endif
-let g:loaded_sensible = 1
 
-filetype plugin indent on
-if !exists('g:syntax_on')
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
