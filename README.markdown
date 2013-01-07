@@ -40,6 +40,20 @@ mostly `:set` calls.)  Here's a taste:
 
 [source]: https://github.com/tpope/vim-sensible/tree/master/plugin/sensible.vim
 
+## FAQ
+
+> How can I override a setting?
+
+Normally, sensible.vim loads after your vimrc, making it a bit tricky to
+override (although you could use `after/plugin/sensible.vim`).  If you want to
+load it earlier, add the following line to you vimrc, then put your overrides
+below.
+
+    runtime! plugin/sensible.vim
+
+Feel free to [let me know][GitHub issues] which setting you object to, so I
+can reassess whether it makes sense to include it.
+
 ## Contributing
 
 I want this to be a plugin nobody objects to installing.  [Let me
