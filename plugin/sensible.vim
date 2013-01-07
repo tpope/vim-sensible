@@ -14,6 +14,8 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
+" Use :help 'option' to see the documentation for the given option.
+
 set backspace=indent,eol,start
 set complete-=i
 set showmatch
@@ -26,8 +28,9 @@ set ttimeoutlen=50
 
 set incsearch
 set smartcase
+" Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohls<CR><C-L>
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 
 set laststatus=2
@@ -69,6 +72,7 @@ if exists('+undofile')
   set undofile
 endif
 
+" Allow color schemes do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
@@ -77,10 +81,12 @@ if !exists('g:netrw_list_hide')
   let g:netrw_list_hide = '^\.,\~$,^tags$'
 endif
 
+" Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" Make Y consistent with C and D.  See :help Y.
 nnoremap Y y$
 
 " vim:set ft=vim et sw=2:
