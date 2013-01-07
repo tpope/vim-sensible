@@ -52,7 +52,7 @@ set autoread
 set autowrite
 set fileformats=unix,dos,mac
 
-set viminfo+=!
+set viminfo^=!
 
 if isdirectory(expand('~/.cache/vim'))
   if &directory =~# '^\.,'
