@@ -61,7 +61,7 @@ if isdirectory(expand('~/.cache/vim'))
   if &backupdir =~# '^\.,'
     set backupdir^=~/.cache/vim/backup//
   endif
-  if exists('+undodir') && &undodir =~# '^\.,'
+  if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
     set undodir^=~/.cache/vim/undo//
   endif
 endif
