@@ -7,7 +7,7 @@ endif
 let g:loaded_sensible = 1
 
 filetype plugin indent on
-if !exists('g:syntax_on')
+if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
@@ -21,16 +21,22 @@ set smarttab
 set ttimeout
 set ttimeoutlen=50
 
-set incsearch
+if has('extra_search')
+  set incsearch
+endif
 set smartcase
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohls<CR><C-L>
 endif
 
 set laststatus=2
-set ruler
-set showcmd
-set wildmenu
+if has('cmdline_info')
+  set ruler
+  set showcmd
+endif
+if has('wildmenu')
+  set wildmenu
+endif
 
 set scrolloff=1
 set sidescrolloff=5
