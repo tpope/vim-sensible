@@ -29,7 +29,7 @@ mostly `:set` calls.)  Here's a taste:
 
 * `'backspace'`: Backspace through anything in insert mode.
 * `'incsearch'`: Start searching before pressing enter.
-* `'listchars'`: Show trailing whitespace.
+* `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
 * `'directory'`: Dump swap files under `~/.cache/vim/swap` (only if that
   directory already exists).  Also `'backupdir'` and `'undodir'`.  Try
