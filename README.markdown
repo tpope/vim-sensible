@@ -84,7 +84,8 @@ for someone who can actually follow directions.
 ## Self-Promotion
 
 Like sensible.vim? Follow the repository on
-[GitHub](https://github.com/tpope/vim-sensible). And if
+[GitHub](https://github.com/tpope/vim-sensible) and vote for it on
+[vim.org](http://www.vim.org/scripts/script.php?script_id=4391). And if
 you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
 [Twitter](http://twitter.com/tpope) and
 [GitHub](https://github.com/tpope).
