@@ -19,6 +19,7 @@ endif
 
 set backspace=indent,eol,start
 set complete-=i
+set infercase
 set showmatch
 
 set autoindent
