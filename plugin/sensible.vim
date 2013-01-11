@@ -54,7 +54,7 @@ endif
 
 set autoread
 set autowrite
-set fileformats=unix,dos,mac
+set fileformats+=mac
 
 set viminfo^=!
 
