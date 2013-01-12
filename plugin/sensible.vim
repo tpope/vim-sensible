@@ -23,6 +23,7 @@ set infercase
 set showmatch
 
 set autoindent
+set shiftround
 set smarttab
 
 set ttimeout
