@@ -25,6 +25,8 @@ set autoindent
 set shiftround
 set smarttab
 
+set nrformats-=octal
+
 set ttimeout
 set ttimeoutlen=50
 
