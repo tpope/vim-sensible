@@ -55,6 +55,9 @@ set autoread
 set autowrite
 set fileformats+=mac
 
+if &history < 1000
+  set history=1000
+endif
 set viminfo^=!
 
 if isdirectory(expand('~/.cache/vim'))
