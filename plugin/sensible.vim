@@ -17,13 +17,14 @@ endif
 
 " Use :help 'option' to see the documentation for the given option.
 
+set autoindent
 set backspace=indent,eol,start
 set complete-=i
 set showmatch
-
-set autoindent
-set shiftround
 set smarttab
+
+set nrformats-=octal
+set shiftround
 
 set ttimeout
 set ttimeoutlen=50
