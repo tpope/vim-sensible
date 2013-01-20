@@ -60,15 +60,16 @@ if &history < 1000
 endif
 set viminfo^=!
 
-if isdirectory(expand('~/.cache/vim'))
+let s:dir = has('win32') ? '~/Application Data/Vim' : has('mac') ? '~/Library/Vim' : '~/.local/share/vim'
+if isdirectory(expand(s:dir))
   if &directory =~# '^\.,'
-    set directory^=~/.cache/vim/swap//
+    let &directory = s:dir . '/swap//,'
   endif
   if &backupdir =~# '^\.,'
-    set backupdir^=~/.cache/vim/backup//
+    let &backupdir = s:dir . '/backup//,'
   endif
   if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-    set undodir^=~/.cache/vim/undo//
+    let &undodir = s:dir . '/undo//,'
   endif
 endif
 if exists('+undofile')

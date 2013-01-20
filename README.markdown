@@ -31,9 +31,10 @@ mostly `:set` calls.)  Here's a taste:
 * `'incsearch'`: Start searching before pressing enter.
 * `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
-* `'directory'`: Dump swap files under `~/.cache/vim/swap` (only if that
-  directory already exists).  Also `'backupdir'` and `'undodir'`.  Try
-  `mkdir -p ~/.cache/vim/{swap,backup,undo}`.
+* `'directory'`: Dump swap files under `~/.local/share/vim/swap`,
+  `~/Library/Vim/swap`, or `~\Application Data\Vim\swap`, depending on your
+  platform.  Also `'backupdir'` and `'undodir'`.  The directories aren't
+  created automatically, so try `mkdir -p ~/Library/Vim/{swap,backup,undo}`.
 * `nmap Y y$`: Make `Y` behave like `C` and `D`.
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
