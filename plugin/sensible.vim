@@ -63,13 +63,13 @@ set viminfo^=!
 let s:dir = has('win32') ? '~/Application Data/Vim' : has('mac') ? '~/Library/Vim' : '~/.local/share/vim'
 if isdirectory(expand(s:dir))
   if &directory =~# '^\.,'
-    let &directory = s:dir . '/swap//,'
+    let &directory = s:dir . '/swap//,' . &directory
   endif
   if &backupdir =~# '^\.,'
-    let &backupdir = s:dir . '/backup//,'
+    let &backupdir = s:dir . '/backup//,' . &backupdir
   endif
   if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-    let &undodir = s:dir . '/undo//,'
+    let &undodir = s:dir . '/undo//,' . &undodir
   endif
 endif
 if exists('+undofile')
