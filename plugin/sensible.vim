@@ -76,7 +76,7 @@ if exists('+undofile')
   set undofile
 endif
 
-" Allow color schemes do bright colors without forcing bold.
+" Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
