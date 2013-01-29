@@ -40,8 +40,12 @@ set ruler
 set showcmd
 set wildmenu
 
-set scrolloff=1
-set sidescrolloff=5
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
 set display+=lastline
 
 if &listchars ==# 'eol:$'
