@@ -39,6 +39,7 @@ set laststatus=2
 set ruler
 set showcmd
 set wildmenu
+set number
 
 if !&scrolloff
   set scrolloff=1
