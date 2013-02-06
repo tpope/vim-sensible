@@ -1,6 +1,6 @@
 " sensible.vim - Defaults everyone can agree on
 " Maintainer:   Tim Pope <http://tpo.pe/>
-" Version:      1.0
+Version:      1.0
 
 if exists('g:loaded_sensible') || &compatible
   finish
@@ -64,7 +64,7 @@ if &history < 1000
 endif
 set viminfo^=!
 
-let s:dir = has('win32') ? '~/Application Data/Vim' : has('mac') ? '~/Library/Vim' : '~/.local/share/vim'
+let s:dir = has('win32') ? '~/Application Data/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : '~/.local/share/vim'
 if isdirectory(expand(s:dir))
   if &directory =~# '^\.,'
     let &directory = expand(s:dir) . '/swap//,' . &directory
