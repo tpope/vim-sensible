@@ -69,14 +69,18 @@ Basically, they make it so that you can undo things that happened in a
 previous invocation of Vim.  See `:help undo-persistence` for details.  If you
 don't like them strewn all over the file system, you have a few options.
 
-1.  Create the appropriate directory that sensible.vim automatically configures for
-    your platform:
+1.  Create the appropriate directory that sensible.vim automatically
+    configures for your platform:
     * `~/.local/share/vim/undo` on Linux
     * `~/Library/Vim/undo` on OS X
     * `~\Application Data\Vim\undo` on Windows
+
 2.  Provide your own preferred location in `'undodir'`:
+
         set undodir^=~/.vim/undo//
+
 3.  Disable them entirely:
+
         set noundofile
 
 You can also just globally ignore them in your SCM of choice.  That's what I
