@@ -48,6 +48,10 @@ if !&sidescrolloff
 endif
 set display+=lastline
 
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+endif
+
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
   if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
