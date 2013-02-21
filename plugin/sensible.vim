@@ -98,6 +98,8 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 " Make Y consistent with C and D.  See :help Y.
 nnoremap Y y$
 
