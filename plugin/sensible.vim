@@ -66,6 +66,9 @@ set fileformats+=mac
 if &history < 1000
   set history=1000
 endif
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
 set viminfo^=!
 
 let s:dir = has('win32') ? '~/Application Data/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
