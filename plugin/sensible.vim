@@ -60,7 +60,6 @@ if &listchars ==# 'eol:$'
 endif
 
 set autoread
-set autowrite
 set fileformats+=mac
 
 if &history < 1000
