@@ -68,7 +68,9 @@ endif
 if &tabpagemax < 50
   set tabpagemax=50
 endif
-set viminfo^=!
+if !empty(&viminfo)
+  set viminfo^=!
+endif
 
 let s:dir = has('win32') ? '~/Application Data/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
 if isdirectory(expand(s:dir))
