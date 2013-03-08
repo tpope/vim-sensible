@@ -94,7 +94,7 @@ if &t_Co == 8 && $TERM !~# '^linux'
 endif
 
 if !exists('g:netrw_list_hide')
-  let g:netrw_list_hide = '^\.,\~$,^tags$'
+  let g:netrw_list_hide = '\~$,^tags$,\(^\|\s\s\)\zs\.\S\+'
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
