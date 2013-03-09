@@ -32,7 +32,7 @@ mostly `:set` calls.)  Here's a taste:
 * `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
 * `'directory'`: Dump swap files under `~/.local/share/vim/swap`,
-  `~/Library/Vim/swap`, or `~\Application Data\Vim\swap`, depending on your
+  `~/Library/Vim/swap`, or `%APPDATA%\Vim\swap`, depending on your
   platform.  Also `'backupdir'` and `'undodir'`.  The directories aren't
   created automatically, so try `mkdir -p ~/Library/Vim/{swap,backup,undo}`.
 * `nmap Y y$`: Make `Y` behave like `C` and `D`.
@@ -74,7 +74,7 @@ don't like them strewn all over the file system, you have a few options.
 
     * `~/.local/share/vim/undo` on Linux
     * `~/Library/Vim/undo` on OS X
-    * `~\Application Data\Vim\undo` on Windows
+    * `%APPDATA%\Vim\undo` on Windows
 
 2.  Provide your own preferred location in `'undodir'`:
 
