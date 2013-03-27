@@ -82,7 +82,9 @@ don't like them strewn all over the file system, you have a few options.
 
 3.  Disable them entirely:
 
-        set noundofile
+        if has('persistent_undo')
+          set noundofile
+        endif
 
 You can also just globally ignore them in your SCM of choice.  That's what I
 do.
