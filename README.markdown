@@ -31,10 +31,6 @@ mostly `:set` calls.)  Here's a taste:
 * `'incsearch'`: Start searching before pressing enter.
 * `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
-* `'directory'`: Dump swap files under `~/.local/share/vim/swap`,
-  `~/Library/Vim/swap`, or `%APPDATA%\Vim\swap`, depending on your
-  platform.  Also `'backupdir'` and `'undodir'`.  The directories aren't
-  created automatically, so try `mkdir -p ~/Library/Vim/{swap,backup,undo}`.
 * `nmap Y y$`: Make `Y` behave like `C` and `D`.
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
@@ -67,20 +63,13 @@ can reassess whether it makes sense to include it.
 
 Basically, they make it so that you can undo things that happened in a
 previous invocation of Vim.  See `:help undo-persistence` for details.  If you
-don't like them strewn all over the file system, you have a few options.
+don't like them strewn all over the file system, you have a couple of options:
 
-1.  Create the appropriate directory that sensible.vim automatically
-    configures for your platform:
+1.  Provide your own preferred location in `'undodir'`:
 
-    * `~/.local/share/vim/undo` on Linux
-    * `~/Library/Vim/undo` on OS X
-    * `%APPDATA%\Vim\undo` on Windows
+        set undodir^=~/.vim/undo
 
-2.  Provide your own preferred location in `'undodir'`:
-
-        set undodir^=~/.vim/undo//
-
-3.  Disable them entirely:
+2.  Disable them entirely:
 
         if has('persistent_undo')
           set noundofile
