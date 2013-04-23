@@ -54,7 +54,7 @@ endif
 
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
+  if !has('win32') && (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
     let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
   endif
 endif
@@ -91,10 +91,6 @@ endif
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
-endif
-
-if !exists('g:netrw_list_hide')
-  let g:netrw_list_hide = '\~$,^tags$,\(^\|\s\s\)\zs\.\S\+'
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
