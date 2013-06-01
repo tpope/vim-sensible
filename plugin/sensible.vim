@@ -98,10 +98,12 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-inoremap <C-U> <C-G>u<C-U>
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-" Make Y consistent with C and D.  See :help Y.
-nnoremap Y y$
+if !exists('g:sensible_suppress_maps')
+  inoremap <C-U> <C-G>u<C-U>
+  nnoremap & :&&<CR>
+  xnoremap & :&&<CR>
+  " Make Y consistent with C and D.  See :help Y.
+  nnoremap Y y$
+endif
 
 " vim:set ft=vim et sw=2:
