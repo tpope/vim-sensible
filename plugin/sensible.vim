@@ -22,6 +22,7 @@ set backspace=indent,eol,start
 set complete-=i
 set showmatch
 set smarttab
+set hidden
 
 set nrformats-=octal
 set shiftround
