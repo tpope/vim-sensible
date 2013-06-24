@@ -60,6 +60,10 @@ if &listchars ==# 'eol:$'
   endif
 endif
 
+if &shell =~# 'fish$'
+  set shell=/bin/bash
+endif
+
 set autoread
 set fileformats+=mac
 
