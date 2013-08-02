@@ -87,9 +87,5 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 inoremap <C-U> <C-G>u<C-U>
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-" Make Y consistent with C and D.  See :help Y.
-nnoremap Y y$
 
 " vim:set ft=vim et sw=2:
