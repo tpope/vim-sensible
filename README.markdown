@@ -31,7 +31,6 @@ mostly `:set` calls.)  Here's a taste:
 * `'incsearch'`: Start searching before pressing enter.
 * `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
-* `nmap Y y$`: Make `Y` behave like `C` and `D`.
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
 
