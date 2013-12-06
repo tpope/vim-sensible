@@ -63,6 +63,13 @@ if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
 
+"On windows, if gvim.exe is executed from cygwin bash shell, the shell
+"needs to be changed to the shell most plugins expect on windows.
+"This does not change &shell inside cygwin or msys vim.
+if ( has("win32") || has("win64") || has("win16") ) && &shell =~# 'bash$'
+  set shell=$COMSPEC " sets shell to correct path for cmd.exe
+endif
+
 set autoread
 set fileformats+=mac
 
