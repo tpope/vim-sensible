@@ -86,6 +86,7 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" Allow user to undo the insert-mode operation performed by <C-U>.
 inoremap <C-U> <C-G>u<C-U>
 
 " vim:set ft=vim et sw=2:
