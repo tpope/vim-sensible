@@ -26,7 +26,7 @@ set nrformats-=octal
 set shiftround
 
 set ttimeout
-set ttimeoutlen=50
+set ttimeoutlen=100
 
 set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
