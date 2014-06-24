@@ -23,7 +23,6 @@ set complete-=i
 set smarttab
 
 set nrformats-=octal
-set shiftround
 
 set ttimeout
 set ttimeoutlen=100
