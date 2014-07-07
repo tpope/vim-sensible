@@ -54,6 +54,10 @@ if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
+if has('path_extra')
+  setglobal tags-=./tags tags^=./tags;
+endif
+
 if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
