@@ -92,4 +92,7 @@ endif
 
 inoremap <C-U> <C-G>u<C-U>
 
+" Remove keybinding for ex-mode (often hit on accident, rarely requested)
+nnoremap Q <nop>
+
 " vim:set ft=vim et sw=2:
