@@ -37,6 +37,7 @@ set laststatus=2
 set ruler
 set showcmd
 set wildmenu
+set lazyredraw
 
 if !&scrolloff
   set scrolloff=1
