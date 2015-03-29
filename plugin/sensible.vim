@@ -80,6 +80,10 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
+if has('langmap') && (v:version > 704 || v:version == 704 && has('patch502'))
+  set langnoremap
+endif
+
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
