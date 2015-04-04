@@ -59,7 +59,7 @@ if v:version > 703 || v:version == 703 && has("patch541")
 endif
 
 if has('path_extra')
-  setglobal tags-=./tags tags^=./tags;
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
 if &shell =~# 'fish$'
