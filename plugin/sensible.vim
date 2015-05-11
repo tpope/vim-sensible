@@ -26,6 +26,9 @@ set nrformats-=octal
 
 set ttimeout
 set ttimeoutlen=100
+if has('nvim')
+  set nottimeout
+endif
 
 set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
