@@ -92,7 +92,9 @@ endif
 
 inoremap <C-U> <C-G>u<C-U>
 
-" Remove keybinding for ex-mode (often hit on accident, rarely requested)
-nnoremap Q <nop>
+" Remove keybinding for Ex-mode (often hit on accident, rarely desired)
+if maparg('Q', 'n') ==# ''
+  nnoremap Q <nop>
+endif
 
 " vim:set ft=vim et sw=2:
