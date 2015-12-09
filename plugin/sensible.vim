@@ -67,7 +67,6 @@ if &shell =~# 'fish$'
 endif
 
 set autoread
-set fileformats+=mac
 
 if &history < 1000
   set history=1000
