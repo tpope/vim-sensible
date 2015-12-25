@@ -35,7 +35,6 @@ endif
 
 set laststatus=2
 set ruler
-set showcmd
 set wildmenu
 
 if !&scrolloff
