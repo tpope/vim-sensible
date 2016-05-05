@@ -37,6 +37,10 @@ set laststatus=2
 set ruler
 set wildmenu
 
+if !&sidescroll
+  set sidescroll=1
+endif
+
 if !&scrolloff
   set scrolloff=1
 endif
