@@ -64,6 +64,7 @@ endif
 if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
+let g:is_posix=1
 
 set autoread
 
