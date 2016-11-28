@@ -36,6 +36,7 @@ endif
 set laststatus=2
 set ruler
 set wildmenu
+match ExtraWhitespace /\s\+$/
 
 if !&scrolloff
   set scrolloff=1
