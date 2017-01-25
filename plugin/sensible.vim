@@ -85,7 +85,7 @@ endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
+  runtime! plugin/matchit.vim
 endif
 
 inoremap <C-U> <C-G>u<C-U>
