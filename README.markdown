@@ -31,6 +31,7 @@ mostly `:set` calls.)  Here's a taste:
 * `'incsearch'`: Start searching before pressing enter.
 * `'listchars'`: Makes `:set list` (visible whitespace) prettier.
 * `'scrolloff'`: Always show at least one line above/below the cursor.
+* `'autoread'`: Autoload file changes. You can undo by pressing `u`.
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
 
