@@ -5,7 +5,7 @@
 if exists('g:loaded_sensible') || &compatible
   finish
 else
-  let g:loaded_sensible = 1
+  let g:loaded_sensible = 'yes'
 endif
 
 if has('autocmd')
@@ -24,8 +24,10 @@ set smarttab
 
 set nrformats-=octal
 
-set ttimeout
-set ttimeoutlen=100
+if !has('nvim')
+  set ttimeout
+  set ttimeoutlen=100
+endif
 
 set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
