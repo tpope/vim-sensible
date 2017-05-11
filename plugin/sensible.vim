@@ -92,4 +92,8 @@ endif
 
 inoremap <C-U> <C-G>u<C-U>
 
+" Map Y to act like D and C, i.e. to yank until EOL (which is more logical,
+" but not Vi-compatible), rather than act as yy
+nnoremap Y y$
+
 " vim:set ft=vim et sw=2:
