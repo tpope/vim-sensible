@@ -13,6 +13,7 @@ if has('autocmd')
 endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
+  let g:xml_syntax_folding = 1
 endif
 
 " Use :help 'option' to see the documentation for the given option.
