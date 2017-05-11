@@ -35,6 +35,10 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+set number
+" Toggle line numbers independently for each window
+nnoremap <silent> <C-N><C-N> :setlocal number!<CR>
+
 set laststatus=2
 set ruler
 set wildmenu
