@@ -15,6 +15,11 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+    set mouse=a
+endif
+
 " Use :help 'option' to see the documentation for the given option.
 
 set autoindent
