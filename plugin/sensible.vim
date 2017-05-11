@@ -10,6 +10,11 @@ endif
 
 if has('autocmd')
   filetype plugin indent on
+
+  " Remember last location in file, but not for commit messages.
+  " see :help last-position-jump
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g`\"" | endif
 endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
