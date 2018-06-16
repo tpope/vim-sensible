@@ -35,6 +35,11 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" Let Ex mode have normal command-line editing and completion
+if maparg('Q', 'n') == ''
+  nnoremap Q gQ
+endif
+
 set laststatus=2
 set ruler
 set wildmenu
