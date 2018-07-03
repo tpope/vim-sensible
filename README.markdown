@@ -15,12 +15,13 @@ set of defaults that (hopefully) everyone can agree on.
 
 ## Installation
 
-If you don't have a preferred installation method, I recommend
-installing [pathogen.vim](https://github.com/tpope/vim-pathogen), and
-then simply copy and paste:
+Install using your favorite package manager, or use Vim's built-in package
+support:
 
-    cd ~/.vim/bundle
-    git clone git://github.com/tpope/vim-sensible.git
+    mkdir -p ~/.vim/pack/tpope/start
+    cd ~/.vim/pack/tpope/start
+    git clone https://tpope.io/vim/sensible.git
+    vim -u NONE -c "helptags sensible/doc" -c q
 
 ## Features
 
