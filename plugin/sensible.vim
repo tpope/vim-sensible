@@ -78,7 +78,10 @@ endif
 if !empty(&viminfo)
   set viminfo^=!
 endif
-set sessionoptions-=options
+if &sessionoptions =~# '\<options\>'
+  set sessionoptions-=options
+  set sessionoptions+=localoptions
+endif
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
