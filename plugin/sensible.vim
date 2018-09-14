@@ -39,6 +39,8 @@ set laststatus=2
 set ruler
 set wildmenu
 
+set wildmode=longest,list,full
+
 if !&scrolloff
   set scrolloff=1
 endif
