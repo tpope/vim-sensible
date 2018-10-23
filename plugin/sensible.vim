@@ -64,7 +64,7 @@ if has('path_extra')
 endif
 
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/bin/bash
+  set shell=/usr/bin/env\ bash
 endif
 
 set autoread
