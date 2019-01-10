@@ -20,6 +20,7 @@ endif
 set autoindent
 set backspace=indent,eol,start
 set complete-=i
+set completeopt+=menuone,noinsert,noselect
 set smarttab
 
 set nrformats-=octal
