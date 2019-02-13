@@ -52,7 +52,7 @@ documentation for an option.  If you install [scriptease.vim][], you can press
 
 Normally, sensible.vim loads after your vimrc, making it a bit tricky to
 override (although you could use `after/plugin/sensible.vim`).  If you want to
-load it earlier, add the following line to you vimrc, then put your overrides
+load it earlier, add the following line to your vimrc, then put your overrides
 below.
 
     runtime! plugin/sensible.vim
