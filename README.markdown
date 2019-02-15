@@ -18,9 +18,8 @@ set of defaults that (hopefully) everyone can agree on.
 Install using your favorite package manager, or use Vim's built-in package
 support:
 
-    mkdir -p ~/.vim/pack/tpope/start
-    cd ~/.vim/pack/tpope/start
-    git clone https://tpope.io/vim/sensible.git
+    mkdir -p ~/.vim/pack/tpope/start/vim-sensible
+    git clone https://tpope.io/vim/sensible.git ~/.vim/pack/tpope/start/vim-sensible
     vim -u NONE -c "helptags sensible/doc" -c q
 
 ## Features
