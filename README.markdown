@@ -35,7 +35,7 @@ mostly `:set` calls.)  Here's a taste:
 * `'autoread'`: Autoload file changes. You can undo by pressing `u`.
 * `runtime! macros/matchit.vim`: Load the version of matchit.vim that ships
   with Vim.
-* `'complete'`: Disable auto-complete from current and included files ([not everyone likes it](https://github.com/tpope/vim-sensible/issues/51))
+* `'complete'`: Disable auto-complete from included files ([reasoning here](https://github.com/tpope/vim-sensible/issues/51))
 
 [source]: https://github.com/tpope/vim-sensible/tree/master/plugin/sensible.vim
 
