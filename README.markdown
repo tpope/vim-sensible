@@ -22,6 +22,7 @@ support:
     cd ~/.vim/pack/tpope/start
     git clone https://tpope.io/vim/sensible.git
     vim -u NONE -c "helptags sensible/doc" -c q
+    cd -
 
 ## Features
 
