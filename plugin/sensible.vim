@@ -87,7 +87,7 @@ set sessionoptions-=options
 set viewoptions-=options
 
 " Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+if &t_Co == 8 && $TERM !~# '^Eterm'
   set t_Co=16
 endif
 
