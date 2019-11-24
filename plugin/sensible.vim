@@ -35,11 +35,6 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if &synmaxcol == 3000
-  " Lowering this improves performance in files with long lines.
-  set synmaxcol=500
-endif
-
 set laststatus=2
 set ruler
 set wildmenu
