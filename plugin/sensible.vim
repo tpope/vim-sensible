@@ -66,6 +66,7 @@ endif
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
   set shell=/usr/bin/env\ bash
 endif
+let g:is_posix=1
 
 set autoread
 
