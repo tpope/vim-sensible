@@ -46,6 +46,7 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 set display+=lastline
+autocmd BufEnter * if &buftype=="terminal" | set scrolloff=0 | else | set scrolloff=1 | endif
 
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
