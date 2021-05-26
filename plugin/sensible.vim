@@ -97,5 +97,8 @@ endif
 if empty(mapcheck('<C-W>', 'i'))
   inoremap <C-W> <C-G>u<C-W>
 endif
+if empty(mapcheck('<S-Tab>', 'i'))
+  inoremap <S-Tab> <C-d>
+endif
 
 " vim:set ft=vim et sw=2:
