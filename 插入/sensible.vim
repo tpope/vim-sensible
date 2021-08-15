@@ -1,5 +1,5 @@
 " sensible.vim - Defaults everyone can agree on
-" Maintainer:   Tim Pope <http://tpo.pe/>
+" Maintainer:   guanlong huang <gl041188@gmail.com>
 " Version:      1.2
 
 if exists('g:loaded_sensible') || &compatible
