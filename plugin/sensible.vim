@@ -8,7 +8,7 @@ else
   let g:loaded_sensible = 'yes'
 endif
 
-if has('autocmd')
+if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
   filetype plugin indent on
 endif
 if has('syntax') && !exists('g:syntax_on')
