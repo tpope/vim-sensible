@@ -17,7 +17,9 @@ endif
 
 " Use :help 'option' to see the documentation for the given option.
 
-set backspace=indent,eol,start
+if empty(&backspace)
+  set backspace=indent,eol,start
+endif
 set complete-=i
 set smarttab
 
