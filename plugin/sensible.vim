@@ -98,5 +98,3 @@ endif
 if empty(mapcheck('<C-W>', 'i'))
   inoremap <C-W> <C-G>u<C-W>
 endif
-
-" vim:set ft=vim et sw=2:
