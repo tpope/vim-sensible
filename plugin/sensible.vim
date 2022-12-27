@@ -62,10 +62,6 @@ if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
-if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/usr/bin/env\ bash
-endif
-
 set autoread
 
 if &history < 1000
@@ -83,6 +79,11 @@ set viewoptions-=options
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^Eterm'
   set t_Co=16
+endif
+
+" If the running Vim lacks support for the Fish shell, use Bash instead.
+if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
+  set shell=/usr/bin/env\ bash
 endif
 
 " Disable a legacy behavior that can break plugin maps.
