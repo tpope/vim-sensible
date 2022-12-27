@@ -58,7 +58,9 @@ if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
 
-if has('path_extra')
+" Replace the check for a tags file in the parent directory of the current
+" file with a check in every ancestor directory.
+if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
