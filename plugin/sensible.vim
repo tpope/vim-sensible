@@ -17,14 +17,26 @@ endif
 
 " Use :help 'option' to see the documentation for the given option.
 
-if empty(&backspace)
+" Check if an option was set from a file in $HOME.  This lets us avoid
+" overriding options in the user's vimrc, but still override options in the
+" system vimrc.
+function! s:MaySet(option) abort
+  redir => out
+  silent verbose execute 'setglobal' a:option . '?'
+  redir END
+  return out !~# ' \~[\/]'
+endfunction
+
+if s:MaySet('backspace')
   set backspace=indent,eol,start
 endif
 " Disable completing keywords in included files (e.g., #include in C).  When
 " configured properly, this can result in the slow, recursive scanning of
 " hundreds of files of dubious relevance.
 set complete-=i
-set smarttab
+if s:MaySet('smarttab')
+  set smarttab
+endif
 
 set nrformats-=octal
 
@@ -35,23 +47,29 @@ if !has('nvim') && &ttimeoutlen == -1
   set ttimeoutlen=100
 endif
 
-set incsearch
+if has('reltime') && s:MaySet('incsearch')
+  set incsearch
+endif
 " Use CTRL-L to clear the highlighting of 'hlsearch' (off by default) and call
 " :diffupdate.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if &laststatus < 2
+if s:MaySet('laststatus')
   set laststatus=2
 endif
-set ruler
-set wildmenu
+if s:MaySet('ruler')
+  set ruler
+endif
+if s:MaySet('wildmenu')
+  set wildmenu
+endif
 
-if !&scrolloff
+if s:MaySet('scrolloff')
   set scrolloff=1
 endif
-if !&sidescrolloff
+if s:MaySet('sidescrolloff')
   set sidescrolloff=5
 endif
 set display+=lastline
@@ -59,7 +77,7 @@ if has('patch-7.4.2109')
   set display+=truncate
 endif
 
-if &listchars ==# 'eol:$'
+if s:MaySet('listchars')
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
@@ -74,12 +92,14 @@ if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
-set autoread
+if s:MaySet('autoread')
+  set autoread
+endif
 
-if &history < 1000
+if s:MaySet('history')
   set history=1000
 endif
-if &tabpagemax < 50
+if s:MaySet('tabpagemax')
   set tabpagemax=50
 endif
 
@@ -103,7 +123,7 @@ if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'
 endif
 
 " Disable a legacy behavior that can break plugin maps.
-if has('langmap') && exists('+langremap') && &langremap
+if has('langmap') && exists('+langremap') && &langremap && s:MaySet('langremap')
   set nolangremap
 endif
 
