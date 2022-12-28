@@ -49,6 +49,9 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 set display+=lastline
+if has('patch-7.4.2109')
+  set display+=truncate
+endif
 
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
