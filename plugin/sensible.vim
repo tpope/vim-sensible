@@ -20,18 +20,24 @@ endif
 if empty(&backspace)
   set backspace=indent,eol,start
 endif
+" Disable completing keywords in included files (e.g., #include in C).  When
+" configured properly, this can result in the slow, recursive scanning of
+" hundreds of files of dubious relevance.
 set complete-=i
 set smarttab
 
 set nrformats-=octal
 
+" Make the escape key more responsive by decreasing the wait time for an
+" escape sequence (e.g., arrow keys).
 if !has('nvim') && &ttimeoutlen == -1
   set ttimeout
   set ttimeoutlen=100
 endif
 
 set incsearch
-" Use <C-L> to clear the highlighting of :set hlsearch.
+" Use CTRL-L to clear the highlighting of 'hlsearch' (off by default) and call
+" :diffupdate.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
@@ -57,8 +63,9 @@ if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
+" Delete comment character when joining commented lines.
 if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j " Delete comment character when joining commented lines
+  set formatoptions+=j
 endif
 
 " Replace the check for a tags file in the parent directory of the current
@@ -75,9 +82,13 @@ endif
 if &tabpagemax < 50
   set tabpagemax=50
 endif
+
+" Persist g:UPPERCASE variables, used by some plugins, in .viminfo.
 if !empty(&viminfo)
   set viminfo^=!
 endif
+" Saving options in session and view files causes more problems than it
+" solves, so disable it.
 set sessionoptions-=options
 set viewoptions-=options
 
