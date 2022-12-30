@@ -69,8 +69,9 @@ endif
 if s:MaySet('scrolloff')
   set scrolloff=1
 endif
-if s:MaySet('sidescrolloff')
-  set sidescrolloff=5
+if s:MaySet('sidescroll') && s:MaySet('sidescrolloff')
+  set sidescroll=1
+  set sidescrolloff=2
 endif
 set display+=lastline
 if has('patch-7.4.2109')
