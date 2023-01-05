@@ -21,14 +21,10 @@ endif
 " overriding options in the user's vimrc, but still override options in the
 " system vimrc.
 function! s:MaySet(option) abort
-  if exists('*execute')
-    let out = execute('verbose setglobal ' . a:option . '?')
-  else
-    redir => out
-    silent verbose execute 'setglobal' a:option . '?'
-    redir END
-  endif
-  return out !~# ' \~[\/]'
+  redir => out
+  silent verbose execute 'setglobal termcap' a:option . '?'
+  redir END
+  return out !~# " \\~[\\/][^\n]*$"
 endfunction
 
 if s:MaySet('backspace')
