@@ -22,7 +22,7 @@ endif
 " system vimrc.
 function! s:MaySet(option) abort
   redir => out
-  silent verbose execute 'setglobal termcap' a:option . '?'
+  silent verbose execute 'setglobal all' a:option . '?'
   redir END
   return out !~# " \\~[\\/][^\n]*$"
 endfunction
