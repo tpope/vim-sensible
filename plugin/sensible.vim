@@ -21,9 +21,13 @@ endif
 " overriding options in the user's vimrc, but still override options in the
 " system vimrc.
 function! s:MaySet(option) abort
-  redir => out
-  silent verbose execute 'setglobal all' a:option . '?'
-  redir END
+  if exists('*execute')
+    let out = execute('verbose setglobal all ' . a:option . '?')
+  else
+    redir => out
+    silent verbose execute 'setglobal all' a:option . '?'
+    redir END
+  endif
   return out !~# " \\~[\\/][^\n]*$"
 endfunction
 
