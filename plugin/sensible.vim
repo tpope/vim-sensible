@@ -8,14 +8,12 @@ else
   let g:loaded_sensible = 'yes'
 endif
 
-if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
-  filetype plugin indent on
-endif
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
-
 " Use :help 'option' to see the documentation for the given option.
+
+" Disable vi compatibility, if for some reason it's on.
+if &compatible
+  set nocompatible
+endif
 
 " Check if an option was set from a file in $HOME.  This lets us avoid
 " overriding options in the user's vimrc, but still override options in the
@@ -130,6 +128,13 @@ endif
 " Disable a legacy behavior that can break plugin maps.
 if has('langmap') && exists('+langremap') && &langremap && s:MaySet('langremap')
   set nolangremap
+endif
+
+if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
 endif
 
 if empty(mapcheck('<C-U>', 'i'))
