@@ -15,17 +15,22 @@ if &compatible
   set nocompatible
 endif
 
+if exists('*execute')
+  let s:Execute = function('execute')
+else
+  function! s:Execute(cmd) abort
+    redir => out
+    silent verbose execute a:cmd
+    redir END
+    return out
+  endfunction
+endif
+
 " Check if an option was set from a file in $HOME.  This lets us avoid
 " overriding options in the user's vimrc, but still override options in the
 " system vimrc.
 function! s:MaySet(option) abort
-  if exists('*execute')
-    let out = execute('verbose setglobal all ' . a:option . '?')
-  else
-    redir => out
-    silent verbose execute 'setglobal all' a:option . '?'
-    redir END
-  endif
+  let out = s:Execute('verbose setglobal all ' . a:option . '?')
   return out !~# " \\(\\~[\\/][^\n]*\\|Lua\\)$"
 endfunction
 
