@@ -26,24 +26,32 @@ else
   endfunction
 endif
 
-" Check if an option was set from a file in $HOME.  This lets us avoid
-" overriding options in the user's vimrc, but still override options in the
-" system vimrc.
-function! s:MaySet(option) abort
-  let out = s:Execute('verbose setglobal all ' . a:option . '?')
-  return out !~# " \\(\\~[\\/][^\n]*\\|Lua\\)$"
+let s:defaultval_yes  = ['set ', '']
+let s:defaultval_no = ['set no', '']
+let s:defaultval_checked = ['" ', '']  " translates to comment -> no :set
+let s:default_opts = []
+let s:default_vals = {}
+let s:option_query_str = ' '
+function! s:AddOptionQuery(option)
+  let s:option_query_str .= a:option . '? '
+endfunction
+function! s:DefaultSet(option, setcmd) abort
+  if exists('&' . a:option)
+    call s:AddOptionQuery(a:option)
+    call add(s:default_opts, a:option)
+    let s:default_vals[a:option] = a:setcmd[0] . a:option . a:setcmd[1]
+  endif
+endfunction
+function! s:Default(option, value) abort
+  call s:DefaultSet(a:option, ['set ', '=' . a:value])
 endfunction
 
-if s:MaySet('backspace')
-  set backspace=indent,eol,start
-endif
+call s:Default('backspace', 'indent,eol,start')
 " Disable completing keywords in included files (e.g., #include in C).  When
 " configured properly, this can result in the slow, recursive scanning of
 " hundreds of files of dubious relevance.
 set complete-=i
-if s:MaySet('smarttab')
-  set smarttab
-endif
+call s:DefaultSet('smarttab', s:defaultval_yes)
 
 set nrformats-=octal
 
@@ -54,8 +62,8 @@ if !has('nvim') && &ttimeoutlen == -1
   set ttimeoutlen=100
 endif
 
-if has('reltime') && s:MaySet('incsearch')
-  set incsearch
+if has('reltime')
+  call s:DefaultSet('incsearch', s:defaultval_yes)
 endif
 " Use CTRL-L to clear the highlighting of 'hlsearch' (off by default) and call
 " :diffupdate.
@@ -63,31 +71,28 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if s:MaySet('laststatus')
-  set laststatus=2
-endif
-if s:MaySet('ruler')
-  set ruler
-endif
-if s:MaySet('wildmenu')
-  set wildmenu
-endif
+call s:Default('laststatus', '2')
+call s:DefaultSet('ruler', s:defaultval_yes)
+call s:DefaultSet('wildmenu', s:defaultval_yes)
 
-if s:MaySet('scrolloff')
-  set scrolloff=1
-endif
-if s:MaySet('sidescroll') && s:MaySet('sidescrolloff')
-  set sidescroll=1
-  set sidescrolloff=2
-endif
+call s:Default('scrolloff', '1')
+
+call s:AddOptionQuery('sidescroll')
+call s:AddOptionQuery('sidescrolloff')
+" call at the end
+function! s:SetSidescroll() abort
+  if s:MaySet('sidescroll') && s:MaySet('sidescrolloff')
+    set sidescroll=1
+    set sidescrolloff=2
+  endif
+endfunction
+
 set display+=lastline
 if has('patch-7.4.2109')
   set display+=truncate
 endif
 
-if s:MaySet('listchars')
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
+call s:Default('listchars', 'tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+')
 
 " Delete comment character when joining commented lines.
 if v:version > 703 || v:version == 703 && has("patch541")
@@ -100,16 +105,10 @@ if has('path_extra') && (',' . &g:tags . ',') =~# ',\./tags,'
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
-if s:MaySet('autoread')
-  set autoread
-endif
+call s:DefaultSet('autoread', s:defaultval_yes)
 
-if s:MaySet('history')
-  set history=1000
-endif
-if s:MaySet('tabpagemax')
-  set tabpagemax=50
-endif
+call s:Default('history', '1000')
+call s:Default('tabpagemax', '50')
 
 " Persist g:UPPERCASE variables, used by some plugins, in .viminfo.
 if !empty(&viminfo)
@@ -131,9 +130,35 @@ if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'
 endif
 
 " Disable a legacy behavior that can break plugin maps.
-if has('langmap') && exists('+langremap') && &langremap && s:MaySet('langremap')
-  set nolangremap
+if has('langmap') && exists('+langremap') && &langremap
+  call s:DefaultSet('langremap', s:defaultval_no)
 endif
+
+function! s:CheckDefaults() abort
+  let s:global_settings = s:Execute('verbose setglobal all lines? ' . s:option_query_str)
+  " 'lines=' delimits the start of the answer
+  let s:global_settings = substitute(s:global_settings, '.*lines=[^\n]*', '', '') . "\n"
+  " ^ begins and ends in newline
+endfunction
+
+" Check if an option was set from a file in $HOME.  This lets us avoid
+" overriding options in the user's vimrc, but still override options in the
+" system vimrc.
+let s:homerx = " \\(\\~[\\/][^\n]*\\|Lua\\)\n"
+function! s:MaySet(option) abort
+  "return s:Execute('verbose setglobal all ' . a:option . '?') . "\n" !~# s:homerx  " previous version
+  return s:global_settings !~# ('\n\(\s\+\|no\)\?' . a:option . '\(=[^\n]*\n\|\n\)' . '[^\n]*' . s:homerx)
+endfunction
+
+function! s:ComputeSettings() abort
+  call filter(s:default_opts, 's:MaySet(v:val)')
+  return join(map(s:default_opts, 's:default_vals[v:val]'), "\n")
+endfunction
+
+call s:CheckDefaults()
+let s:computed_settings = s:ComputeSettings()
+call s:Execute(s:computed_settings)
+call s:SetSidescroll()
 
 if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
   filetype plugin indent on
@@ -169,3 +194,7 @@ endif
 if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man' && !has('nvim')
   runtime ftplugin/man.vim
 endif
+
+function! s:GetComputedSettings() abort  " DEBUG: call with <SNR> from :scriptnames
+  return s:computed_settings
+endfun
