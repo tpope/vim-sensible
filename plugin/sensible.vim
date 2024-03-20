@@ -18,15 +18,20 @@ endif
 " Check if an option was set from a file in $HOME.  This lets us avoid
 " overriding options in the user's vimrc, but still override options in the
 " system vimrc.
-function! s:MaySet(option) abort
-  if exists('*execute')
-    let out = execute('verbose setglobal all ' . a:option . '?')
-  else
+if exists('*execute')
+  function! s:VerboseSetglobal(option) abort
+    return execute('verbose setglobal columns ' . a:option . '?')
+  endfunction
+else
+  function! s:VerboseSetglobal(option) abort
     redir => out
-    silent verbose execute 'setglobal all' a:option . '?'
+    silent verbose execute 'setglobal columns ' a:option . '?'
     redir END
-  endif
-  return out !~# " \\(\\~[\\/][^\n]*\\|Lua\\)$"
+    return out
+  endfunction
+endif
+function! s:MaySet(option) abort
+  return s:VerboseSetglobal(a:option) !~# " \\(\\~[\\/][^\n]*\\|Lua\\)$"
 endfunction
 
 if s:MaySet('backspace')
