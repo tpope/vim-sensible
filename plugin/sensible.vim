@@ -57,16 +57,16 @@ call s:Default('backspace', 'indent,eol,start')
 " Disable completing keywords in included files (e.g., #include in C).  When
 " configured properly, this can result in the slow, recursive scanning of
 " hundreds of files of dubious relevance.
-set complete-=i
+call s:DefaultMod('complete', '-=', 'i', 0)
 call s:DefaultSet('smarttab', s:defaultval_yes)
 
-set nrformats-=octal
+call s:DefaultMod('nrformats', '-=', 'octal', 0)
 
 " Make the escape key more responsive by decreasing the wait time for an
 " escape sequence (e.g., arrow keys).
 if !has('nvim') && &ttimeoutlen == -1
-  set ttimeout
-  set ttimeoutlen=100
+  call s:DefaultSet('ttimeout', s:defaultval_yes, 0)
+  call s:Default('ttimeoutlen', '100', 0)
 endif
 
 if has('reltime')
@@ -94,16 +94,17 @@ function! s:SetSidescroll() abort
   endif
 endfunction
 
-set display+=lastline
+let s:display_mods='lastline'
 if has('patch-7.4.2109')
-  set display+=truncate
+  let s:display_mods .= ',truncate'
 endif
+call s:DefaultMod('display', '+=', s:display_mods, 0)
 
 call s:Default('listchars', 'tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+')
 
 " Delete comment character when joining commented lines.
 if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j
+  call s:DefaultMod('formatoptions', '+=', 'j', 0)
 endif
 
 " Replace the check for a tags file in the parent directory of the current
@@ -123,17 +124,17 @@ if !empty(&viminfo)
 endif
 " Saving options in session and view files causes more problems than it
 " solves, so disable it.
-set sessionoptions-=options
-set viewoptions-=options
+call s:DefaultMod('sessionoptions', '-=', 'options', 0)
+call s:DefaultMod('viewoptions', '-=', 'options', 0)
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^Eterm'
-  set t_Co=16
+  call s:Default('t_Co', '16', 0)
 endif
 
 " If the running Vim lacks support for the Fish shell, use Bash instead.
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/usr/bin/env\ bash
+  call s:Default('shell', '/usr/bin/env\ bash', 0)
 endif
 
 " Disable a legacy behavior that can break plugin maps.
