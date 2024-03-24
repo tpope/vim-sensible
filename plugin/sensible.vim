@@ -32,18 +32,25 @@ let s:defaultval_checked = ['" ', '']  " translates to comment -> no :set
 let s:default_opts = []
 let s:default_vals = {}
 let s:option_query_str = ' '
+let s:option_not_queried = { }
 function! s:AddOptionQuery(option)
+  let s:option_not_queried[a:option] = 0
   let s:option_query_str .= a:option . '? '
 endfunction
-function! s:DefaultSet(option, setcmd) abort
-  if exists('&' . a:option)
-    call s:AddOptionQuery(a:option)
+function! s:DefaultSet(option, setcmd, query_it = 1) abort
+  if ! a:query_it || exists('&' . a:option)
+    if a:query_it
+      call s:AddOptionQuery(a:option)
+    endif
     call add(s:default_opts, a:option)
     let s:default_vals[a:option] = a:setcmd[0] . a:option . a:setcmd[1]
   endif
 endfunction
-function! s:Default(option, value) abort
-  call s:DefaultSet(a:option, ['set ', '=' . a:value])
+function! s:DefaultMod(option, mod, value, query_it = 1) abort
+  call s:DefaultSet(a:option, ['set ', a:mod . a:value], a:query_it)
+endfunction
+function! s:Default(option, value, query_it = 1) abort
+  call s:DefaultSet(a:option, ['set ', '=' . a:value], a:query_it)
 endfunction
 
 call s:Default('backspace', 'indent,eol,start')
@@ -147,7 +154,7 @@ endfunction
 let s:homerx = " \\(\\~[\\/][^\n]*\\|Lua\\)\n"
 function! s:MaySet(option) abort
   "return s:Execute('verbose setglobal all ' . a:option . '?') . "\n" !~# s:homerx  " previous version
-  return s:global_settings !~# ('\n\(\s\+\|no\)\?' . a:option . '\(=[^\n]*\n\|\n\)' . '[^\n]*' . s:homerx)
+  return get(s:option_not_queried, a:option, 1) || s:global_settings !~# ('\n\(\s\+\|no\)\?' . a:option . '\(=[^\n]*\n\|\n\)' . '[^\n]*' . s:homerx)
 endfunction
 
 function! s:ComputeSettings() abort
