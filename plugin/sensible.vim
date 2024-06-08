@@ -26,7 +26,7 @@ function! s:MaySet(option) abort
     silent verbose execute 'setglobal all' a:option . '?'
     redir END
   endif
-  return out !~# " \\(\\~[\\/][^\n]*\\|Lua\\)$"
+  return out !~# " \\(\\~[\\/]\\|Lua\\)[^\n]*$"
 endfunction
 
 if s:MaySet('backspace')
