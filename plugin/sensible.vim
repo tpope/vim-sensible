@@ -143,6 +143,9 @@ endif
 if empty(mapcheck('<C-W>', 'i'))
   inoremap <C-W> <C-G>u<C-W>
 endif
+if empty(mapcheck('<S-Tab>', 'i'))
+  inoremap <S-Tab> <C-d>
+endif
 
 " From `:help :DiffOrig`.
 if exists(":DiffOrig") != 2
